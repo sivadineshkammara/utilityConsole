@@ -1,3 +1,25 @@
+/*
+ * ============================================================================
+ * Module      : Calculator
+ * Responsibility:
+ *   - Find sum, difference, product, quotient and remainder of two numbers
+ *   - Provide reusable calculator APIs for other modules
+ *
+ * Public API:
+ *   calculator()
+ *   calculateAndPrint()
+
+ *  Private Helpers:
+ *    addition()
+ *    subtraction()
+ *    multiplication()
+ *    division()
+ *    modulus()
+ *
+ *
+ * ============================================================================
+ */
+
 #include <stdio.h>
 
 #include "calculator.h"
