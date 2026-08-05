@@ -5,7 +5,7 @@
 #include "temperature.h"
 #include "geometry.h"
 
-void optionsFunc(int *temp){
+void printMainMenu(int *temp){
     
     printf(
         "\n*****Enter your choice*****\n"
@@ -15,14 +15,7 @@ void optionsFunc(int *temp){
         "4. Exit\n\n"
         
     );
-
-    while(1){
-        printf("Your Choice is: ");
-        if(scanf("%d", temp)==1) break;
-
-        printf("Invalid Value\n\n");
-        while(getchar()!='\n');
-    }
+    readChoice(temp);
 }
 
 // void mainMenu(int *choice){
@@ -53,7 +46,7 @@ void optionsFunc(int *temp){
 int main(void){
     int choice;
     while(1){
-        optionsFunc(&choice);
+        printMainMenu(&choice);
         switch(choice){
             case 1:
                 runCalculator();

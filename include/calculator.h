@@ -2,6 +2,6 @@
 #define CALCULATOR_H
 
 void runCalculator(void);
-void calculateAndPrint(char operator);
+void performOperation(char operator);
 
 #endif

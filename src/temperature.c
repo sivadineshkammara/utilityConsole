@@ -34,7 +34,7 @@
 
 
 //Private function declarations.
-static void temperatureTable(void);
+static void displayTemperatureMenu(void);
 
 static void celsiusToFahrenheit(void);
 static void celsiusToKelvin(void);
@@ -46,7 +46,7 @@ static void kelvinToCelsius(void);
 static void kelvinToFahrenheit(void);
 
 //Helper functions implementations.
-static void temperatureTable(void){
+static void displayTemperatureMenu(void){
     printf(
         "\n*** Choose the temperature conversion ***\n"
         "1.Celsius to Fahrenheit\n"
@@ -96,7 +96,7 @@ static void kelvinToFahrenheit(void){
 void runTemperatureConverter(void){
     int option;
     while(1){
-        temperatureTable();
+        displayTemperatureMenu();
         readChoice(&option);
         switch(option){
             case 1:
@@ -109,7 +109,7 @@ void runTemperatureConverter(void){
                 fahrenheitToCelsius();
                 break;
             case 4:
-                fahrenfeitToKelvin();
+                fahrenheitToKelvin();
                 break;
             case 5:
                 kelvinToCelsius();

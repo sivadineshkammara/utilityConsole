@@ -31,8 +31,16 @@ static void subtraction(void);
 static void multiplication(void);
 static void division(void);
 static void modulus(void);
-// static void repeatCalculation(void);
+// static int validateDivisor(int d);
 
+// static void repeatCalculation(void);
+// static int validateDivisor(int d){
+//     if(d == 0){
+//         printf("Error: Division by zero is not allowed.\n");
+//         return 1;
+//     }
+//     return 0;
+// }
 static int add(const int a, const int b){
     return(a+b);
 }
@@ -49,7 +57,7 @@ static float divide(const float a, const float b){
     return(a/b);
 }
 
-static int moduli(const int a, const int b){
+static int calculateRemainder(const int a, const int b){
     return(a%b);
 }
 
@@ -100,10 +108,10 @@ static void modulus(void){
         printf("Error: Division by zero is not allowed.\n");
         return;
     }
-    printf("The remainder of %d and %d is: %d\n\n", a,b,moduli(a,b));
+    printf("The remainder of %d and %d is: %d\n\n", a,b,calculateRemainder(a,b));
 }
 
-void calculateAndPrint(char op){
+void performOperation(char op){
     
     switch(op){
         case '+':
@@ -143,30 +151,24 @@ void runCalculator(void){
             "6. Exit\n"
         );
 
-        while(1){
-            printf("Your Choice is: ");
-            if(scanf("%d", &option) == 1) break;
-            printf("***\nInvalid option***\n\n");
-            while(getchar()!='\n');
-
-        }
+        readChoice(&option);
         // printf("\n");
 
         switch(option){
             case 1:
-                calculateAndPrint('+');
+                performOperation('+');
                 break;
             case 2:
-                calculateAndPrint('-');
+                performOperation('-');
                 break;
             case 3:
-                calculateAndPrint('*');
+                performOperation('*');
                 break;
             case 4:
-                calculateAndPrint('/');
+                performOperation('/');
                 break;
             case 5:
-                calculateAndPrint('%');
+                performOperation('%');
                 break;
             case 6:
                 return;
