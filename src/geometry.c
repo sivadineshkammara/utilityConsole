@@ -37,6 +37,8 @@
 static const float PI = 3.14f; 
 
 //function declarations for private helpers.
+static void findArea(void);
+static void findPerimeter(void);
 static void shapeMenu(void);
 static void readOption(int *choice);
 
@@ -118,7 +120,7 @@ static void perimeterOfCircle(void){
     printf("\nTesting\n");
 }
 
-void findArea(void){
+static void findArea(void){
     int choice;
     while(1){
         shapeMenu();
@@ -144,7 +146,7 @@ void findArea(void){
         }
     }
 }
-void findPerimeter(void){
+static void findPerimeter(void){
     int choice;
     while(1){
         shapeMenu();
