@@ -172,3 +172,29 @@ static void findPerimeter(void){
         }
     }
 }
+
+void chooseGeometryFunction(void){
+    int choice;
+    while(1){
+        printf(
+            "\n-----Choose the function-----\n"
+            "1. Find Area\n"
+            "2. Find Perimeter\n"
+            "3. Exit\n"
+        );
+        readOption(&choice);
+        switch(choice){
+            case 1:
+                findArea();
+                break;
+            case 2:
+                findPerimeter();
+                break;
+            case 3:
+                return;
+            default:
+                printf("\n***Invalid Option***\n");
+                break;
+        }
+    }
+}
