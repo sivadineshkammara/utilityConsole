@@ -119,7 +119,7 @@ static void perimeterOfRectangle(void){
     readFloat("Length of the Rectangle", &length);
     readFloat("Breatdh of the Rectangle", &breadth);
     perimeter = 2*(length + breadth);
-    printf("\n The perimeter of the rectangle: %.2f\n", perimeter);
+    printf("\nThe perimeter of the rectangle: %.2f\n", perimeter);
 }
 
 static void perimeterOfTriangle(void){
@@ -128,14 +128,14 @@ static void perimeterOfTriangle(void){
     readFloat("First side of the Triangle", &sideTwo);
     readFloat("First side of the Triangle", &sideThree);
     perimeter = sideOne + sideTwo + sideThree;
-    printf("\n The perimeter of the Triangle: %.2f\n", perimeter);
+    printf("\nThe perimeter of the Triangle: %.2f\n", perimeter);
 }
 
 static void perimeterOfCircle(void){
     float radius, perimeter;
     readFloat("radius of the Circle", &radius);
     perimeter = 2 * PI * radius;
-    printf("\n The perimeter of the rectangle: %.2f\n", perimeter);
+    printf("\nThe perimeter of the Circle: %.2f\n", perimeter);
 }
 
 static void findArea(void){
