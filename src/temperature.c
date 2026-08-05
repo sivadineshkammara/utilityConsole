@@ -56,20 +56,44 @@ static void temperatureTable(void){
         "5.Kelvin to Celsius\n"
         "6.Kelvin to Fahrenheit\n"
         "7.Return to Main menu\n"
-    )
+    );
 }
 
-static void celsiusToFahrenheit(void){}
-static void celsiusToKelvin(void){}
+static void celsiusToFahrenheit(void){
+    float celsiusVal;
+    readFloat("Celsius_Value", &celsiusVal);
+    printf("Converted temperature is: %.2fF\n\n", (celsiusVal * 1.8) + 32);
+}
+static void celsiusToKelvin(void){
+    float celsiusVal;
+    readFloat("Celsius_Value", &celsiusVal);
+    printf("Converted temperature is: %.2fK\n\n", celsiusVal + 273.15);
+}
 
-static void fahrenheitToCelsius(void){}
-static void fahrenfeitToKelvin(void){}
+static void fahrenheitToCelsius(void){
+    float fahrenheitVal;
+    readFloat("Fahrenheit_Value", &fahrenheitVal);
+    printf("Converted temperature is: %.2fC\n\n", (fahrenheitVal - 32) / 1.8);
+}
+static void fahrenfeitToKelvin(void){
+    float fahrenheitVal;
+    readFloat("Fahrenheit_Value", &fahrenheitVal);
+    printf("Converted temperature is: %.2fK\n\n", ((fahrenheitVal - 32) / 1.8) + 273.15);
+}
 
-static void kelvinToCelsius(void){}
-static void kelvinToFahrenheit(void){}
+static void kelvinToCelsius(void){
+    float kelvinVal;
+    readFloat("Kelvin_Value", &kelvinVal);
+    printf("Converted temperature is: %.2fC\n\n", kelvinVal - 273.15);
+}
+static void kelvinToFahrenheit(void){
+    float kelvinVal;
+    readFloat("Kelvin_Value", &kelvinVal);
+    printf("Converted temperature is: %.2fF\n\n", ((kelvinVal - 273.15) * 1.8) + 32);
+}   
 
 // Public functions implementations.
-void convertTemperature(void){
+void temperatureConverter(void){
     int option;
     while(1){
         temperatureTable();

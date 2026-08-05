@@ -1,12 +1,9 @@
 #include <stdio.h>
 
-#include "calculator.h"
-#include "geometry.h"
 #include "input.h"
-
-void temperatureConverter(void){
-    printf("Still not ready\n");
-} //only for testing.
+#include "calculator.h"
+#include "temperature.h"
+#include "geometry.h"
 
 void optionsFunc(int *temp){
     
