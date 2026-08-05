@@ -135,8 +135,8 @@ void calculator(void){
         printf(
             "\n-----Select your operation-----\n"
             "1. Addition of two numbers\n"
-            "2. Substraction of two numbers\n"
-            "3. Multplication of two numbers\n"
+            "2. Subtraction of two numbers\n"
+            "3. Multiplication of two numbers\n"
             "4. Division of two numbers\n"
             "5. Find the Remainder\n"
             "6. Exit\n"

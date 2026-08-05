@@ -58,7 +58,7 @@ static void perimeterOfCircle(void);
 //function implementations for private helpers.
 static void shapeMenu(void){
     printf(
-        "\n-----Chose your shape-----\n"
+        "\n-----Choose your shape-----\n"
         "1. Square\n"
         "2. Rectangle\n"
         "3. Triangle\n"
@@ -71,7 +71,7 @@ static void readOption(int *choice){
     while(1){
         printf("\nEnter your choice: ");
         if(scanf("%d", choice) == 1) break;
-        printf("\n***Invalid shape choosen!!***\n");
+        printf("\n***Invalid shape chosen!!***\n");
         while(getchar()!='\n');
         
     }
@@ -81,7 +81,7 @@ static void areaOfSquare(void){
     float side, area;
     readFloat("side of the square", &side);
     area = side * side;
-    printf("\nThe area of the square is: %.2f\n", area);
+    printf("\nThe area of the square is: %.2fsqm\n", area);
 }
 
 static void areaOfRectangle(void){
@@ -89,37 +89,37 @@ static void areaOfRectangle(void){
     readFloat("Breadth of Rectangle", &breadth);
     readFloat("Length of Rectangle", &length);
     area = length * breadth;
-    printf("\nThe area of the rectangle is: %.2f\n", area);
+    printf("\nThe area of the rectangle is: %.2fsqm\n", area);
 } 
 
 static void areaOfTriangle(void){
     float base, height, area;
-    readFloat("Base of the Trinagle", &base);
+    readFloat("Base of the Triangle", &base);
     readFloat("Height of the Triangle", &height);
     area = (base * height)/2;
-    printf("\nThe area of the triangle is: %.2f\n", area);
+    printf("\nThe area of the Triangle is: %.2fsqm\n", area);
 }
 
 static void areaOfCircle(void){
     float radius, area;
     readFloat("Radius of the Circle", &radius);
     area = PI * radius * radius;
-    printf("The area of the Circle is: %.2f", area);
+    printf("The area of the Circle is: %.2fsqm", area);
 }
 
 static void perimeterOfSquare(void){
     float side, perimeter;
     readFloat("Side of the Square", &side);
     perimeter = 4 * side;
-    printf("\nThe perimeter of the square is: %.2f\n", perimeter);
+    printf("\nThe perimeter of the square is: %.2fm\n", perimeter);
 }
 
 static void perimeterOfRectangle(void){
     float length, breadth, perimeter;
     readFloat("Length of the Rectangle", &length);
-    readFloat("Breatdh of the Rectangle", &breadth);
+    readFloat("Breadth of the Rectangle", &breadth);
     perimeter = 2*(length + breadth);
-    printf("\nThe perimeter of the rectangle: %.2f\n", perimeter);
+    printf("\nThe perimeter of the rectangle: %.2fm\n", perimeter);
 }
 
 static void perimeterOfTriangle(void){
@@ -128,14 +128,14 @@ static void perimeterOfTriangle(void){
     readFloat("First side of the Triangle", &sideTwo);
     readFloat("First side of the Triangle", &sideThree);
     perimeter = sideOne + sideTwo + sideThree;
-    printf("\nThe perimeter of the Triangle: %.2f\n", perimeter);
+    printf("\nThe perimeter of the Triangle: %.2fm\n", perimeter);
 }
 
 static void perimeterOfCircle(void){
     float radius, perimeter;
     readFloat("radius of the Circle", &radius);
     perimeter = 2 * PI * radius;
-    printf("\nThe perimeter of the Circle: %.2f\n", perimeter);
+    printf("\nThe perimeter of the Circle: %.2fm\n", perimeter);
 }
 
 static void findArea(void){
