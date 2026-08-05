@@ -93,7 +93,7 @@ static void kelvinToFahrenheit(void){
 }   
 
 // Public functions implementations.
-void temperatureConverter(void){
+void runTemperatureConverter(void){
     int option;
     while(1){
         temperatureTable();

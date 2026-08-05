@@ -191,7 +191,8 @@ static void findPerimeter(void){
     }
 }
 
-void chooseGeometryFunction(void){
+// Public functions implementations.
+void runGeometryCalculator(void){
     int choice;
     while(1){
         printf(

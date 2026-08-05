@@ -1,6 +1,6 @@
 #ifndef GEOMETRY_H
 #define GEOMETRY_H
 
-void chooseGeometryFunction(void);
+void runGeometryCalculator(void);
 
 #endif 

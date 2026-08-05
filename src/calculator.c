@@ -128,7 +128,8 @@ void calculateAndPrint(char op){
     }
 }
 
-void calculator(void){
+// Public function implementations.
+void runCalculator(void){
     int option;
 
     while(1){

@@ -56,13 +56,13 @@ int main(void){
         optionsFunc(&choice);
         switch(choice){
             case 1:
-                calculator();
+                runCalculator();
                 break;
             case 2:
-                temperatureConverter();
+                runTemperatureConverter();
                 break;
             case 3:
-                chooseGeometryFunction();
+                runGeometryCalculator();
                 break;
             case 4:
                 printf("\n###..Closing the program..###\n\n");
