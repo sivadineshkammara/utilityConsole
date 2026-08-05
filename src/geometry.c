@@ -19,13 +19,16 @@
  *    perimeterOfRectangle()
  *    perimeterOfTriangle()
  *    perimeterOfCircle()
- *formulas:
- *   Celsius to Fahrenheit: (C * 9/5) + 32
- *   Fahrenheit to Celsius: (F - 32) * 5/9
+ *  formulas:
  *   Area of Square: side * side
  *   Area of Rectangle: length * breadth
  *   Area of Triangle: (base * height)/2
  *   Area of Circle: pi * radius * radius
+
+ *   Perimeter of Square: 4 * side
+ *   Perimeter of Rectangle: 2 * (length + breadth)
+ *   Perimeter of Triangle: side1 + side2 + side3
+ *   Perimeter of Circle: 2 * pi * radius
  * ============================================================================
  */
 
@@ -105,19 +108,34 @@ static void areaOfCircle(void){
 }
 
 static void perimeterOfSquare(void){
-    printf("\nTesting\n");
+    float side, perimeter;
+    readFloat("Side of the Square", &side);
+    perimeter = 4 * side;
+    printf("\nThe perimeter of the square is: %.2f\n", perimeter);
 }
 
 static void perimeterOfRectangle(void){
-    printf("\nTesting\n");
+    float length, breadth, perimeter;
+    readFloat("Length of the Rectangle", &length);
+    readFloat("Breatdh of the Rectangle", &breadth);
+    perimeter = 2*(length + breadth);
+    printf("\n The perimeter of the rectangle: %.2f\n", perimeter);
 }
 
 static void perimeterOfTriangle(void){
-    printf("\nTesting\n");
+    float sideOne, sideTwo, sideThree, perimeter;
+    readFloat("First side of the Triangle", &sideOne);
+    readFloat("First side of the Triangle", &sideTwo);
+    readFloat("First side of the Triangle", &sideThree);
+    perimeter = sideOne + sideTwo + sideThree;
+    printf("\n The perimeter of the Triangle: %.2f\n", perimeter);
 }
 
 static void perimeterOfCircle(void){
-    printf("\nTesting\n");
+    float radius, perimeter;
+    readFloat("radius of the Circle", &radius);
+    perimeter = 2 * PI * radius;
+    printf("\n The perimeter of the rectangle: %.2f\n", perimeter);
 }
 
 static void findArea(void){
