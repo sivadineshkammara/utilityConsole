@@ -14,7 +14,7 @@ void optionsFunc(int *temp){
         "\n*****Enter your choice*****\n"
         "1. Calculator.\n"
         "2. Temperature Converter.\n"
-        "3. Area Finder.\n"
+        "3. Geometry Calculator.\n"
         "4. Exit\n\n"
         
     );
@@ -28,29 +28,29 @@ void optionsFunc(int *temp){
     }
 }
 
-void mainMenu(int *choice){
-    int temp = *choice;
-    while(temp != 4 ){
-        switch(temp){
-            case 1:
-                calculator();
-                break;
-            case 2:
-                temperatureConverter();
-                break;
-            case 3:
-                findArea();
-                break;
-            default:
-                printf("****Please enter a valid option.****\n\n");
-                return;
-        }
+// void mainMenu(int *choice){
+//     int temp = *choice;
+//     while(temp != 4 ){
+//         switch(temp){
+//             case 1:
+//                 calculator();
+//                 break;
+//             case 2:
+//                 temperatureConverter();
+//                 break;
+//             case 3:
+//                 findArea();
+//                 break;
+//             default:
+//                 printf("****Please enter a valid option.****\n\n");
+//                 return;
+//         }
         
-        optionsFunc(&temp);
-        // printf("====%d=====%d====\n", temp, *choice);
+//         optionsFunc(&temp);
+//         // printf("====%d=====%d====\n", temp, *choice);
 
-    }
-}
+//     }
+// }
 
 
 int main(void){
@@ -65,15 +65,14 @@ int main(void){
                 temperatureConverter();
                 break;
             case 3:
-                findArea();
+                chooseGeometryFunction();
                 break;
             case 4:
                 printf("\n###..Closing the program..###\n\n");
-                return 1;
+                return 0;
             default:
                 printf("\n****Invalid option.****\n\n");
         }
     }
-    calculator();
     return 0;
 }

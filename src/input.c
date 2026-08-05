@@ -42,6 +42,14 @@ void readFloat(const char *s, float *f){
     }
 }
 
+void readChoice(int *option){
+    while(1){
+        printf("\nEnter your choice: ");
+        if(scanf("%d", option) == 1) break;
+        printf("\n***Invalid Option***\n");
+        while(getchar() != '\n');
+    }
+}
 // static int validateChar(char startChar, char endChar, const char inputVal){
 //     if(inputVal >= startChar && inputVal <= endChar){
 //         return 1;

@@ -182,7 +182,7 @@ void chooseGeometryFunction(void){
             "2. Find Perimeter\n"
             "3. Exit\n"
         );
-        readOption(&choice);
+        readChoice(&choice);
         switch(choice){
             case 1:
                 findArea();
