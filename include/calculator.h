@@ -1,7 +1,9 @@
 #ifndef CALCULATOR_H
 #define CALCULATOR_H
 
+#include "types.h"
+
 void runCalculator(void);
-void performOperation(char operator);
+void performOperation(Operation op);
 
 #endif
