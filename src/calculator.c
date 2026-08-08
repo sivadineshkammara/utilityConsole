@@ -24,6 +24,7 @@
 
 #include "calculator.h"
 #include "input.h"
+#include "types.h"
 
 //Private function declarations.
 static void addition(void);
