@@ -36,12 +36,13 @@
 
 #include "geometry.h"
 #include "input.h"
+#include "types.h"
 
 static const float PI = 3.14f; 
 
 //function declarations for private helpers.
-static void findArea(void);
-static void findPerimeter(void);
+static void findArea(Shape *option);
+static void findPerimeter(Shape *option);
 static void displayShapeMenu(void);
 
 static void areaOfSquare(void);
@@ -155,25 +156,26 @@ static void perimeterOfCircle(void){
     printf("\nThe perimeter of the Circle: %.2fm\n", calculatePerimeter('C', radius, 0, 0));
 }
 
-static void findArea(void){
+static void findArea(Shape *option){
     int choice;
     while(1){
         displayShapeMenu();
         readChoice(&choice);
-        switch(choice){
-            case 1:
+        *option = (Shape)choice;
+        switch(*option){
+            case SHAPE_SQUARE:
                 areaOfSquare();
                 break;
-            case 2:
+            case SHAPE_RECTANGLE:
                 areaOfRectangle();
                 break;
-            case 3:
+            case SHAPE_TRIANGLE:
                 areaOfTriangle();
                 break;
-            case 4:
+            case SHAPE_CIRCLE:
                 areaOfCircle();
                 break;
-            case 5:
+            case SHAPE_EXIT:
                 return;
             default:
                 printf("\n***Invalid Option***\n");
@@ -181,12 +183,13 @@ static void findArea(void){
         }
     }
 }
-static void findPerimeter(void){
+static void findPerimeter(Shape *option){
     int choice;
     while(1){
         displayShapeMenu();
         readChoice(&choice);
-        switch(choice){
+        *option = (Shape)choice;
+        switch(*option){
             case 1:
                 perimeterOfSquare();
                 break;
@@ -210,6 +213,7 @@ static void findPerimeter(void){
 
 // Public functions implementations.
 void runGeometryCalculator(void){
+    Shape option;
     int choice;
     while(1){
         printf(
@@ -221,10 +225,10 @@ void runGeometryCalculator(void){
         readChoice(&choice);
         switch(choice){
             case 1:
-                findArea();
+                findArea(&option);
                 break;
             case 2:
-                findPerimeter();
+                findPerimeter(&option);
                 break;
             case 3:
                 return;

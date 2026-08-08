@@ -139,7 +139,8 @@ void performOperation(char op){
 
 // Public function implementations.
 void runCalculator(void){
-    int option;
+    Operation option;
+    int choice;
 
     while(1){
         printf(
@@ -152,26 +153,27 @@ void runCalculator(void){
             "6. Exit\n"
         );
 
-        readChoice(&option);
+        readChoice(&choice);
+        option = (Operation)choice;
         // printf("\n");
 
         switch(option){
-            case 1:
+            case OP_ADD:
                 performOperation('+');
                 break;
-            case 2:
+            case OP_SUBTRACT:
                 performOperation('-');
                 break;
-            case 3:
+            case OP_MULTIPLY:
                 performOperation('*');
                 break;
-            case 4:
+            case OP_DIVIDE:
                 performOperation('/');
                 break;
-            case 5:
+            case OP_MODULUS:
                 performOperation('%');
                 break;
-            case 6:
+            case OP_EXIT:
                 return;
             default:
                 printf("***Please enter a valid option***\n\n");
