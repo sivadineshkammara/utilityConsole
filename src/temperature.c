@@ -81,12 +81,12 @@ static void kelvinToFahrenheit(void){
 
 // Public functions implementations.
 void runTemperatureConverter(void){
-    TemperatureScale temperatureUnit;
+    TemperatureConversion temperatureUnit;
     int option;
     while(1){
         displayTemperatureMenu();
         readChoice(&option);
-        temperatureUnit = (TemperatureScale)option;
+        temperatureUnit = (TemperatureConversion)option;
         switch(temperatureUnit){
             case CONVERT_CELSIUS_FAHRENHEIT:
                 celsiusToFahrenheit();

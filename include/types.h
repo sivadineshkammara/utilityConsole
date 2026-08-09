@@ -33,7 +33,7 @@ typedef enum{
     CONVERT_KELVIN_CELSIUS,
     CONVERT_KELVIN_FAHRENHEIT,
     CONVERT_EXIT
-}TemperatureScale;
+}TemperatureConversion;
 
 typedef enum{
     GEOMETRY_AREA = 1,
