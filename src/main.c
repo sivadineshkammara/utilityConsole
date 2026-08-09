@@ -6,8 +6,7 @@
 #include "geometry.h"
 #include "types.h"
 
-void printMainMenu(MainMenuOption *choice){
-    int temp;
+void printMainMenu(void){
     printf(
         "\n*****Enter your choice*****\n"
         "1. Calculator.\n"
@@ -16,14 +15,14 @@ void printMainMenu(MainMenuOption *choice){
         "4. Exit\n\n"
         
     );
-    readChoice(&temp);
-    *choice = (MainMenuOption)temp;
 }
 
 int main(void){
     MainMenuOption choice;
+    int temp;
     while(1){
-        printMainMenu(&choice);
+        printMainMenu();
+        choice = (MainMenuOption)temp;
         switch(choice){
             case MENU_CALCULATOR:
                 runCalculator();
