@@ -32,4 +32,10 @@ typedef enum{
     SCALE_EXIT
 }TemperatureScale;
 
+typedef enum{
+    GEOMETRY_AREA = 1,
+    GEOMETRY_PERIMETER,
+    GEOMETRY_EXIT
+}GemoetryOption;
+
 #endif

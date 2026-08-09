@@ -190,19 +190,19 @@ static void findPerimeter(Shape *option){
         readChoice(&choice);
         *option = (Shape)choice;
         switch(*option){
-            case 1:
+            case SHAPE_SQUARE:
                 perimeterOfSquare();
                 break;
-            case 2:
+            case SHAPE_RECTANGLE:
                 perimeterOfRectangle();
                 break;
-            case 3:
+            case SHAPE_TRIANGLE:
                 perimeterOfTriangle();
                 break;
-            case 4:
+            case SHAPE_CIRCLE:
                 perimeterOfCircle();
                 break;
-            case 5:
+            case SHAPE_EXIT:
                 return;
             default:
                 printf("\n***Invalid Option***\n");
@@ -214,6 +214,7 @@ static void findPerimeter(Shape *option){
 // Public functions implementations.
 void runGeometryCalculator(void){
     Shape option;
+    GemoetryOption geometryOption;
     int choice;
     while(1){
         printf(
@@ -223,14 +224,15 @@ void runGeometryCalculator(void){
             "3. Exit\n"
         );
         readChoice(&choice);
-        switch(choice){
-            case 1:
+        geometryOption = (GemoetryOption)choice;
+        switch(geometryOption){
+            case GEOMETRY_AREA:
                 findArea(&option);
                 break;
-            case 2:
+            case GEOMETRY_PERIMETER:
                 findPerimeter(&option);
                 break;
-            case 3:
+            case GEOMETRY_EXIT:
                 return;
             default:
                 printf("\n***Invalid Option***\n");
