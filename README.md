@@ -1,150 +1,339 @@
 # UtilityConsole
 
-> A modular command-line application written in ANSI C to demonstrate clean software architecture, reusable modules, and professional C programming practices.
+> A modular command-line utility application written in C, developed to build practical skills in modular programming, software architecture, API design, refactoring, and build automation.
+
+UtilityConsole is a portfolio and learning project documenting the progression from fundamental C programming toward structured, maintainable software practices relevant to embedded software development.
+
+The project is intentionally developed through multiple versions. Each version focuses on improving the engineering quality of the existing codebase rather than simply adding functionality.
 
 ---
 
 ## Overview
 
-UtilityConsole is a portfolio project developed to document my progression from learning the C programming language to building maintainable, modular software suitable for embedded systems development.
+UtilityConsole provides a collection of command-line utilities:
 
-Rather than focusing solely on implementing features, this project emphasizes software engineering principles such as modular design, reusable APIs, encapsulation, and clean project organization.
+- Calculator
+- Geometry Calculator
+- Temperature Converter
+- Reusable Input Handling
+- Centralized Menu Presentation
 
-Version 1.0 establishes the architectural foundation upon which future versions will be refactored and expanded.
+The primary purpose of the project is not the complexity of these utilities themselves. Instead, the project provides a practical environment for developing engineering skills in:
+
+- Modular C programming
+- Interface and implementation separation
+- Public and private API design
+- Encapsulation
+- Enumerations and type aliases
+- Separation of UI and application logic
+- Incremental refactoring
+- Multi-file C compilation and linking
+- GNU Make build automation
+- Git-based development and version control
 
 ---
 
-# Project Goals
+## Project Objectives
 
-The primary objectives of this project are:
+The main objectives of UtilityConsole are to:
 
-- Learn modular programming in C
-- Design reusable software components
-- Practice professional header/source separation
-- Improve software architecture through iterative refactoring
-- Build an embedded-oriented coding style
-- Develop a portfolio demonstrating continuous engineering growth
+- Develop strong foundations in C programming
+- Understand modular software architecture
+- Practice header/source separation
+- Design clear public APIs
+- Encapsulate implementation details using `static` functions
+- Use `typedef` and `enum` appropriately
+- Replace magic values with meaningful identifiers
+- Separate user-interface responsibilities from application logic
+- Improve an existing codebase through incremental refactoring
+- Understand translation units, compilation, and linking
+- Automate builds using GNU Make
+- Apply coding practices relevant to embedded firmware development
+- Maintain a professional, version-controlled project history
 
 ---
 
 # Version History
 
-## ✅ Version 1.0 — Modular Programming (Current Release)
+## Version 1.0 — Modular Programming
+
+**Status: Released**
+
+Version 1.0 established the initial modular architecture of UtilityConsole.
 
 ### Implemented Modules
 
 - Calculator
 - Geometry Calculator
 - Temperature Converter
-- Input Validation Library
+- Input Module
 
 ### Concepts Demonstrated
 
-- Modular Programming
-- Header Files (.h)
-- Source Files (.c)
-- Include Guards
-- Public vs Private APIs
-- Static Functions
-- Function Decomposition
-- Input Validation
+- Modular programming
+- Header files
+- Source files
+- Include guards
+- Function decomposition
+- Public and private functions
+- `static` functions
+- Input validation
 - Encapsulation
-- Translation Units
-- Basic Software Architecture
-- Git Version Control
+- Translation units
+- Basic software architecture
+- Git version control
+
+Version 1.0 established the foundation for the subsequent architectural refactoring.
 
 ---
 
-## 🚧 Version 2.0 (Planned)
+## Version 2.0 — Modular Architecture Refactoring
 
-Version 2 focuses on **refactoring** rather than adding features.
+**Status: Released**
 
-Planned improvements:
+Version 2.0 focuses on improving the architecture and maintainability of the V1 codebase without significantly expanding application functionality.
 
-- Enumerations (enum)
-- Structures (struct)
-- typedef
-- Separation of UI and Business Logic
-- Improved API Design
-- Constants Module
-- Makefile
-- Cleaner Input Module
-- Code Reusability Improvements
+The objective was to transform the initial modular implementation into a cleaner, more structured C application.
+
+### Major Improvements
+
+#### Enumerations
+
+Application-level options were represented using meaningful enumerations:
+
+- `MainMenuOption`
+- `Operation`
+- `Shape`
+- `GeometryOption`
+- `TemperatureConversion`
+
+For example:
+
+```c
+typedef enum
+{
+    OP_ADD = 1,
+    OP_SUBTRACT,
+    OP_MULTIPLY,
+    OP_DIVIDE,
+    OP_MODULUS,
+    OP_EXIT
+} Operation;
+```
+
+Using named enumerators improves readability and removes unexplained numeric menu values.
 
 ---
 
-## 🚧 Version 3.0 (Planned)
+#### Shared Type Definitions
 
-Version 3 will evolve the project toward an embedded firmware architecture.
+Common application types are centralized in:
 
-Planned improvements:
+```text
+include/types.h
+```
 
-- Function Pointer Dispatch Tables
-- Status/Error Handling APIs
-- Configuration Module
-- Logging Module
-- Generic Menu Engine
-- Embedded-style Project Structure
+This provides a consistent interface between modules and avoids duplicate type definitions.
+
+---
+
+#### UI Separation
+
+Menu presentation was separated from application modules.
+
+Menu display functions are implemented in:
+
+```text
+src/menu.c
+```
+
+and exposed through:
+
+```text
+include/menu.h
+```
+
+This separates presentation responsibilities from application-specific calculations and processing.
+
+---
+
+#### API Encapsulation
+
+The project distinguishes between public interfaces and private implementation details.
+
+Functions required by other modules are exposed through header files, while implementation-specific helpers remain private using:
+
+```c
+static
+```
+
+For example:
+
+```c
+static void performOperation(Operation op);
+```
+
+The calculator operation dispatcher remains private because other modules do not require direct access to its implementation.
+
+This reduces unnecessary coupling between modules.
+
+---
+
+#### Application Dispatch Refactoring
+
+Redundant dispatch logic in the Calculator module was removed.
+
+The resulting flow is conceptually:
+
+```text
+User Input
+    ↓
+Operation enum
+    ↓
+Exit check
+    ↓
+performOperation()
+    ↓
+Operation dispatch
+    ↓
+Calculation
+```
+
+This keeps operation-selection responsibility inside the Calculator module and avoids unnecessary repeated decision logic.
+
+---
+
+#### Input API
+
+The Input module provides reusable interfaces for different application modules:
+
+```c
+void readChoice(int *option);
+void readFloat(const char *text, float *value);
+void readInt(const char *text, int *value);
+```
+
+The Input module remains independent of Calculator, Geometry, and Temperature-specific enumerations.
+
+This keeps input handling generic and allows individual modules to interpret their own domain-specific choices.
+
+---
+
+#### Build Automation
+
+Version 2 introduced a Makefile to automate compilation and linking.
+
+Supported commands include:
+
+```bash
+make
+```
+
+and:
+
+```bash
+make clean
+```
+
+The build system provides:
+
+- Individual object-file compilation
+- Incremental compilation
+- Automatic header dependency generation
+- Automated linking
+- Strict compiler diagnostics
+
+The project is built with:
+
+```text
+-Wall
+-Wextra
+-Wpedantic
+-Werror
+```
+
+Warnings are therefore treated as build errors.
+
+---
+
+# Architecture
+
+UtilityConsole follows a modular architecture in which each module has a defined responsibility.
+
+```text
+                    UtilityConsole
+                         │
+             ┌───────────┴───────────┐
+             │                       │
+          UI Layer              Application
+             │                       │
+          menu.c          ┌──────────┼──────────┐
+                          │          │          │
+                     calculator  geometry  temperature
+                          │          │          │
+                          └──────────┼──────────┘
+                                     │
+                                  input.c
+```
+
+## Module Responsibilities
+
+| Module | Responsibility |
+|---|---|
+| `main.c` | Application entry point and top-level application flow |
+| `menu.c` | Menu presentation |
+| `input.c` | User input and input validation |
+| `calculator.c` | Calculator operations and calculator flow |
+| `geometry.c` | Geometry calculations |
+| `temperature.c` | Temperature conversions |
+| `types.h` | Shared enumerated types |
 
 ---
 
 # Project Structure
 
-```
+```text
 UtilityConsole/
 │
 ├── include/
 │   ├── calculator.h
 │   ├── geometry.h
 │   ├── input.h
-│   └── temperature.h
+│   ├── menu.h
+│   ├── temperature.h
+│   └── types.h
 │
 ├── src/
 │   ├── calculator.c
 │   ├── geometry.c
 │   ├── input.c
 │   ├── main.c
+│   ├── menu.c
 │   └── temperature.c
 │
-├── docs/
-│
+├── Makefile
+├── .gitignore
 ├── README.md
-│
 └── LICENSE
 ```
 
----
-
-# Build
-
-Compile using GCC:
-
-```bash
-gcc -Wall -Wextra -Wpedantic \
--Iinclude \
-src/*.c \
--o utility_console
-```
+Generated build artifacts such as object files, dependency files, and the executable are excluded from version control.
 
 ---
 
-# Run
-
-```bash
-./utility_console
-```
-
----
-
-# Current Features
+# Features
 
 ## Calculator
+
+Supports:
 
 - Addition
 - Subtraction
 - Multiplication
 - Division
 - Modulus
+
+Operations are represented using the `Operation` enumeration.
 
 ---
 
@@ -164,70 +353,411 @@ src/*.c \
 - Triangle
 - Circle
 
+Geometry selections are represented using enumerated types.
+
 ---
 
 ## Temperature Converter
 
-- Celsius ↔ Fahrenheit
-- Celsius ↔ Kelvin
-- Fahrenheit ↔ Kelvin
+Supports conversions between:
+
+- Celsius and Fahrenheit
+- Celsius and Kelvin
+- Fahrenheit and Kelvin
+
+All six conversion directions are supported.
 
 ---
 
-## Software Engineering Practices Used
+# Build Requirements
 
-- Modular Programming
-- Separation of Responsibilities
-- Encapsulation using `static`
-- Reusable Input Module
-- Public and Private APIs
-- Clean Project Organization
-- Meaningful Function Naming
-- Incremental Refactoring
-- Git Version Control
+The project requires:
+
+- GCC
+- GNU Make
+- Linux/Unix-style command-line environment
+
+The project is developed and tested using a GCC-based toolchain.
 
 ---
 
-# Future Roadmap
+# Building
 
-This repository intentionally evolves through multiple versions.
+The recommended build method is:
 
-Each version focuses on improving the engineering quality of the codebase rather than simply increasing functionality.
-
+```bash
+make
 ```
+
+The Makefile:
+
+1. Compiles individual `.c` files into `.o` object files.
+2. Generates dependency files for included headers.
+3. Links the object files into the final executable.
+
+The resulting executable is:
+
+```text
+utility_console
+```
+
+---
+
+# Running
+
+After building:
+
+```bash
+./utility_console
+```
+
+---
+
+# Cleaning
+
+To remove generated object files, dependency files, and the executable:
+
+```bash
+make clean
+```
+
+---
+
+# Compiler Diagnostics
+
+The project is intentionally built with strict compiler diagnostics:
+
+```text
+-Wall
+-Wextra
+-Wpedantic
+-Werror
+```
+
+This establishes a strict baseline in which compiler warnings are treated as errors.
+
+A version is considered build-ready only after the project compiles without warnings.
+
+---
+
+# Testing
+
+Before a version release, the application is tested across its major functional paths.
+
+### Main Menu
+
+- Calculator
+- Temperature Converter
+- Geometry Calculator
+- Exit
+- Invalid options
+
+### Calculator
+
+- Addition
+- Subtraction
+- Multiplication
+- Division
+- Modulus
+- Division/modulus by zero handling
+- Exit
+
+### Temperature
+
+- Celsius → Fahrenheit
+- Celsius → Kelvin
+- Fahrenheit → Celsius
+- Fahrenheit → Kelvin
+- Kelvin → Celsius
+- Kelvin → Fahrenheit
+- Exit
+
+### Geometry
+
+- Square
+- Rectangle
+- Triangle
+- Circle
+- Area
+- Perimeter
+- Exit
+
+Version 2 was successfully rebuilt from a clean state using the strict compiler configuration and functionally tested after refactoring.
+
+---
+
+# Engineering Practices
+
+The project currently demonstrates:
+
+- Modular C programming
+- Header/source separation
+- Include guards
+- Encapsulation
+- `static` internal functions
+- Public API design
+- Enumerations
+- `typedef`
+- Separation of UI and application responsibilities
+- Reusable input handling
+- Meaningful naming
+- Removal of magic values
+- Incremental refactoring
+- Strict compiler diagnostics
+- Make-based builds
+- Incremental compilation
+- Automatic header dependency tracking
+- Git version control
+- Versioned releases
+
+---
+
+# V2 Learning Outcomes
+
+Version 2 was primarily an exercise in improving an existing C program through structured refactoring.
+
+## `typedef`
+
+`typedef` creates an alias for an existing C type. It does not create a fundamentally new C type.
+
+It can improve readability and simplify declarations.
+
+---
+
+## `enum`
+
+Enumerations provide meaningful names for related integer constants.
+
+For example:
+
+```c
+typedef enum
+{
+    OP_ADD = 1,
+    OP_SUBTRACT,
+    OP_MULTIPLY,
+    OP_DIVIDE,
+    OP_MODULUS,
+    OP_EXIT
+} Operation;
+```
+
+This makes application logic easier to understand than using unexplained numeric values.
+
+---
+
+## Public and Private APIs
+
+A module should expose only the functionality required by other modules.
+
+Public functions are declared in header files:
+
+```c
+void runCalculator(void);
+```
+
+Implementation-specific helpers can remain private:
+
+```c
+static void performOperation(Operation op);
+```
+
+This reduces coupling and protects implementation details.
+
+---
+
+## Separation of Responsibilities
+
+Each module should have a clearly defined responsibility:
+
+```text
+menu.c
+    ↓
+Presentation
+
+input.c
+    ↓
+Input handling
+
+calculator.c
+    ↓
+Calculator logic
+
+geometry.c
+    ↓
+Geometry logic
+
+temperature.c
+    ↓
+Temperature logic
+```
+
+This makes individual modules easier to understand, test, and modify.
+
+---
+
+## Refactoring Without Over-Engineering
+
+V2 reinforced an important design principle:
+
+> Refactoring should improve architecture and maintainability, not simply reduce the number of lines or `switch` statements.
+
+The project therefore favors clear module responsibilities and appropriate abstractions over unnecessary complexity.
+
+---
+
+## Build System
+
+The Makefile demonstrates the basic C build pipeline:
+
+```text
+.c source files
+      ↓
+.o object files
+      ↓
+    linker
+      ↓
+utility_console
+```
+
+Automatic dependency generation allows header changes to trigger recompilation of affected source files.
+
+---
+
+# Development Workflow
+
+UtilityConsole follows an incremental implementation and refactoring workflow:
+
+```text
+Implement
+    ↓
+Compile
+    ↓
+Test
+    ↓
+Review
+    ↓
+Refactor
+    ↓
+Test again
+    ↓
+Commit
+    ↓
+Push
+```
+
+Git commits are used to document meaningful changes to the codebase.
+
+Major project milestones are represented using version tags such as:
+
+```text
 v1.0
-│
-├── Modular Programming
-│
 v2.0
+```
+
+The `main` branch represents the current stable project state.
+
+---
+
+# Version 3 Roadmap
+
+Version 3 will focus on more advanced C and embedded-oriented design patterns.
+
+Potential areas include:
+
+- Function pointer dispatch
+- Dispatch tables
+- Status and error handling APIs
+- Configuration management
+- Advanced API design
+- Embedded-style module interfaces
+- Additional testing infrastructure
+
+These concepts are intentionally deferred until the modular architecture established in V1 and V2 is well understood.
+
+---
+
+# Future Development
+
+The long-term development direction is:
+
+```text
+V1.0
+│
+├── Modular C foundation
+│
+▼
+V2.0
 │
 ├── Refactoring
 ├── Enums
-├── Structures
+├── typedef
+├── API encapsulation
+├── UI separation
+├── Menu module
 ├── Makefile
+├── Incremental compilation
+└── Dependency tracking
 │
-v3.0
+▼
+V3.0
 │
-├── Embedded Design
-├── Function Pointers
-├── Generic Menu System
-├── Configuration Module
+├── Function pointers
+├── Dispatch tables
+├── Error/status handling
+├── Configuration
+└── Embedded-oriented architecture
 │
-v4.0
+▼
+Future
 │
-├── Dynamic Memory
-├── File Handling
+├── Testing infrastructure
 ├── Logging
-└── Testing
+├── File handling
+└── Additional embedded software patterns
 ```
+
+The roadmap is intentionally flexible. Future features will be introduced when they provide meaningful engineering value rather than simply increasing project complexity.
 
 ---
 
-# Learning Objectives
+# Project Philosophy
 
-This repository is part of my journey toward becoming an Embedded Firmware Engineer.
+UtilityConsole is intentionally developed as a progressive engineering project.
 
-The project is intentionally versioned to demonstrate not only programming knowledge but also my ability to improve software architecture through iterative refactoring and engineering best practices.
+The objective is to demonstrate the complete development cycle:
+
+```text
+Understand
+    ↓
+Implement
+    ↓
+Compile
+    ↓
+Test
+    ↓
+Review
+    ↓
+Identify weaknesses
+    ↓
+Refactor
+    ↓
+Document
+    ↓
+Release
+```
+
+Each version represents an improvement in engineering maturity rather than simply an increase in functionality.
+
+---
+
+# Learning Journey
+
+UtilityConsole is part of my broader journey toward becoming an Embedded Firmware Engineer.
+
+The project provides a practical environment for applying C programming concepts and gradually introducing software engineering practices used in larger systems.
+
+The long-term objective is to progress from writing functional C programs toward designing reliable, maintainable, modular software suitable for embedded systems.
 
 ---
 
@@ -242,6 +772,6 @@ Aspiring Embedded Firmware Engineer
 
 ---
 
-## License
+# License
 
 This project is released under the MIT License.
