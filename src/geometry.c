@@ -45,46 +45,46 @@ static const float PI = 3.14f;
 static void findArea(Shape *option);
 static void findPerimeter(Shape *option);
 
-static void areaOfSquare(void);
-static void areaOfRectangle(void); 
-static void areaOfTriangle(void);
-static void areaOfCircle(void);
+static void areaOfSquare(Shape op);
+static void areaOfRectangle(Shape op); 
+static void areaOfTriangle(Shape op);
+static void areaOfCircle(Shape op);
 
-static void perimeterOfSquare(void);
-static void perimeterOfRectangle(void);
-static void perimeterOfTriangle(void);
-static void perimeterOfCircle(void);
+static void perimeterOfSquare(Shape op);
+static void perimeterOfRectangle(Shape op);
+static void perimeterOfTriangle(Shape op);
+static void perimeterOfCircle(Shape op);
 
-static float calculateArea(char shape, float dimension1, float dimension2);
-static float calculatePerimeter(char shape, float dimension1, float dimension2, float dimension3);
+static float calculateArea(Shape shape, float dimension1, float dimension2);
+static float calculatePerimeter(Shape shape, float dimension1, float dimension2, float dimension3);
 
 
 //function implementations for private helpers.
-static float calculateArea(char shape, float dimension1, float dimension2){
+static float calculateArea(Shape shape, float dimension1, float dimension2){
     switch(shape){
-        case 'S':
+        case SHAPE_SQUARE:
             return(dimension1 * dimension1);
-        case 'R':
+        case SHAPE_RECTANGLE:
             return(dimension1 * dimension2);
-        case 'T':
+        case SHAPE_TRIANGLE:
             return((dimension1 * dimension2)/2);
-        case 'C':
+        case SHAPE_CIRCLE:
             return(PI * dimension1 * dimension1);
         default:
             printf("Invalid shape\n");
             return 0;
     }
 }
-static float calculatePerimeter(char shape, float dimension1, float dimension2, float dimension3){
+static float calculatePerimeter(Shape shape, float dimension1, float dimension2, float dimension3){
     switch(shape){
-        case 'S':
+        case SHAPE_SQUARE:
             return(4 * dimension1);
-        case 'R':
+        case SHAPE_RECTANGLE:
             return(2 * (dimension1 + dimension2));
-        case 'T':
+        case SHAPE_TRIANGLE:
             // Assuming dimension1, dimension2 are side1 and side2
             return(dimension1 + dimension2 + dimension3);
-        case 'C':
+        case SHAPE_CIRCLE:
             return(2 * PI * dimension1);
         default:
             printf("Invalid shape\n");
@@ -92,57 +92,57 @@ static float calculatePerimeter(char shape, float dimension1, float dimension2, 
     }
 }
 
-static void areaOfSquare(void){
+static void areaOfSquare(Shape op){
     float side;
     readFloat("side of the Square", &side);
-    printf("\nThe area of the Square is: %.2fsqm\n", calculateArea('S', side, 0));
+    printf("\nThe area of the Square is: %.2fsqm\n", calculateArea(op, side, 0));
 }
 
-static void areaOfRectangle(void){
+static void areaOfRectangle(Shape op){
     float breadth, length;
     readFloat("Breadth of Rectangle", &breadth);
     readFloat("Length of Rectangle", &length);
-    printf("\nThe area of the Rectangle is: %.2fsqm\n", calculateArea('R', length, breadth));
+    printf("\nThe area of the Rectangle is: %.2fsqm\n", calculateArea(op, length, breadth));
 }
 
-static void areaOfTriangle(void){
+static void areaOfTriangle(Shape op){
     float base, height;
     readFloat("Base of the Triangle", &base);
     readFloat("Height of the Triangle", &height);
-    printf("\nThe area of the Triangle is: %.2fsqm\n", calculateArea('T', base, height));
+    printf("\nThe area of the Triangle is: %.2fsqm\n", calculateArea(op, base, height));
 }
 
-static void areaOfCircle(void){
+static void areaOfCircle(Shape op){
     float radius;
     readFloat("Radius of the Circle", &radius);
-    printf("The area of the Circle is: %.2fsqm\n", calculateArea('C', radius, 0));
+    printf("The area of the Circle is: %.2fsqm\n", calculateArea(op, radius, 0));
 }
 
-static void perimeterOfSquare(void){
+static void perimeterOfSquare(Shape op){
     float side;
     readFloat("Side of the Square", &side);
-    printf("\nThe perimeter of the square is: %.2fm\n", calculatePerimeter('S', side, 0, 0));
+    printf("\nThe perimeter of the square is: %.2fm\n", calculatePerimeter(op, side, 0, 0));
 }
 
-static void perimeterOfRectangle(void){
+static void perimeterOfRectangle(Shape op){
     float length, breadth;
     readFloat("Length of the Rectangle", &length);
     readFloat("Breadth of the Rectangle", &breadth);
-    printf("\nThe perimeter of the rectangle: %.2fm\n", calculatePerimeter('R', length, breadth, 0));
+    printf("\nThe perimeter of the rectangle: %.2fm\n", calculatePerimeter(op, length, breadth, 0));
 }
 
-static void perimeterOfTriangle(void){
+static void perimeterOfTriangle(Shape op){
     float sideOne, sideTwo, sideThree;
     readFloat("First side of the Triangle", &sideOne);
     readFloat("Second side of the Triangle", &sideTwo);
     readFloat("Third side of the Triangle", &sideThree);
-    printf("\nThe perimeter of the Triangle: %.2fm\n", calculatePerimeter('T', sideOne, sideTwo, sideThree));
+    printf("\nThe perimeter of the Triangle: %.2fm\n", calculatePerimeter(op, sideOne, sideTwo, sideThree));
 }
 
-static void perimeterOfCircle(void){
+static void perimeterOfCircle(Shape op){
     float radius;
     readFloat("radius of the Circle", &radius);
-    printf("\nThe perimeter of the Circle: %.2fm\n", calculatePerimeter('C', radius, 0, 0));
+    printf("\nThe perimeter of the Circle: %.2fm\n", calculatePerimeter(op, radius, 0, 0));
 }
 
 static void findArea(Shape *option){
@@ -153,16 +153,16 @@ static void findArea(Shape *option){
         *option = (Shape)choice;
         switch(*option){
             case SHAPE_SQUARE:
-                areaOfSquare();
+                areaOfSquare(SHAPE_SQUARE);
                 break;
             case SHAPE_RECTANGLE:
-                areaOfRectangle();
+                areaOfRectangle(SHAPE_RECTANGLE);
                 break;
             case SHAPE_TRIANGLE:
-                areaOfTriangle();
+                areaOfTriangle(SHAPE_TRIANGLE);
                 break;
             case SHAPE_CIRCLE:
-                areaOfCircle();
+                areaOfCircle(SHAPE_CIRCLE);
                 break;
             case SHAPE_EXIT:
                 return;
@@ -180,16 +180,16 @@ static void findPerimeter(Shape *option){
         *option = (Shape)choice;
         switch(*option){
             case SHAPE_SQUARE:
-                perimeterOfSquare();
+                perimeterOfSquare(SHAPE_SQUARE);
                 break;
             case SHAPE_RECTANGLE:
-                perimeterOfRectangle();
+                perimeterOfRectangle(SHAPE_RECTANGLE);
                 break;
             case SHAPE_TRIANGLE:
-                perimeterOfTriangle();
+                perimeterOfTriangle(SHAPE_TRIANGLE);
                 break;
             case SHAPE_CIRCLE:
-                perimeterOfCircle();
+                perimeterOfCircle(SHAPE_CIRCLE);
                 break;
             case SHAPE_EXIT:
                 return;
