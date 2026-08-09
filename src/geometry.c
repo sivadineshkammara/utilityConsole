@@ -42,8 +42,8 @@
 static const float PI = 3.14f; 
 
 //function declarations for private helpers.
-static void findArea(Shape *option);
-static void findPerimeter(Shape *option);
+static void findArea();
+static void findPerimeter();
 
 static void areaOfSquare(Shape op);
 static void areaOfRectangle(Shape op); 
@@ -145,13 +145,14 @@ static void perimeterOfCircle(Shape op){
     printf("\nThe perimeter of the Circle: %.2fm\n", calculatePerimeter(op, radius, 0, 0));
 }
 
-static void findArea(Shape *option){
+static void findArea(){
+    Shape option;
     int choice;
     while(1){
         displayShapeMenu();
         readChoice(&choice);
-        *option = (Shape)choice;
-        switch(*option){
+        option = (Shape)choice;
+        switch(option){
             case SHAPE_SQUARE:
                 areaOfSquare(SHAPE_SQUARE);
                 break;
@@ -172,13 +173,14 @@ static void findArea(Shape *option){
         }
     }
 }
-static void findPerimeter(Shape *option){
+static void findPerimeter(){
+    Shape option;
     int choice;
     while(1){
         displayShapeMenu();
         readChoice(&choice);
-        *option = (Shape)choice;
-        switch(*option){
+        option = (Shape)choice;
+        switch(option){
             case SHAPE_SQUARE:
                 perimeterOfSquare(SHAPE_SQUARE);
                 break;
@@ -202,7 +204,6 @@ static void findPerimeter(Shape *option){
 
 // Public functions implementations.
 void runGeometryCalculator(void){
-    Shape option;
     GeometryOption geometryOption;
     int choice;
     while(1){
@@ -211,10 +212,10 @@ void runGeometryCalculator(void){
         geometryOption = (GeometryOption)choice;
         switch(geometryOption){
             case GEOMETRY_AREA:
-                findArea(&option);
+                findArea();
                 break;
             case GEOMETRY_PERIMETER:
-                findPerimeter(&option);
+                findPerimeter();
                 break;
             case GEOMETRY_EXIT:
                 return;
