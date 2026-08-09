@@ -28,6 +28,7 @@
 #include "menu.h"
 
 //Private function declarations.
+static void performOperation(Operation op);
 static void addition(void);
 static void subtraction(void);
 static void multiplication(void);
@@ -99,7 +100,7 @@ static void modulus(void){
     printf("The remainder of %d and %d is: %d\n\n", a,b,calculateRemainder(a,b));
 }
 
-void performOperation(Operation op){
+static void performOperation(Operation op){
     
     switch(op){
         case OP_ADD:
