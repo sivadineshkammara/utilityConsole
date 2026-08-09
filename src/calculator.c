@@ -56,21 +56,16 @@ static int calculateRemainder(const int a, const int b){
 
 static void addition(void){
     int a,b;
-
     readInt("A", &a);
     readInt("B", &b);
-
     printf("The sum of %d and %d is: %d\n\n", a,b,add(a,b));
 }
 
 static void subtraction(void){
     int a,b;
-    // static const char *s1 = "A";
-    // static const char *s2 = "B";
     readInt("A", &a);
     readInt("B", &b);
     printf("The difference of %d and %d is: %d\n\n", a,b,subtract(a,b));
-    printf("The difference of %d and %d is: %d\n\n", b,a,subtract(b,a));
 }
 
 static void multiplication(void){
@@ -132,36 +127,17 @@ void performOperation(Operation op){
 // Public function implementations.
 void runCalculator(void){
     Operation option;
-    int choice;
+    int rawChoice;
 
     while(1){
         displayCalculatorMenu();
-        readChoice(&choice);
-        option = (Operation)choice;
-        // printf("\n");
+        readChoice(&rawChoice);
+        option = (Operation)rawChoice;
 
-        switch(option){
-            case OP_ADD:
-                performOperation(OP_ADD);
-                break;
-            case OP_SUBTRACT:
-                performOperation(OP_SUBTRACT);
-                break;
-            case OP_MULTIPLY:
-                performOperation(OP_MULTIPLY);
-                break;
-            case OP_DIVIDE:
-                performOperation(OP_DIVIDE);
-                break;
-            case OP_MODULUS:
-                performOperation(OP_MODULUS);
-                break;
-            case OP_EXIT:
-                return;
-            default:
-                printf("***Please enter a valid option***\n\n");
-                break;
+        if(option == OP_EXIT){
+            return;
         }
+        performOperation(option);
     }
 
 }
