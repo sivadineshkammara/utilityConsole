@@ -203,12 +203,12 @@ static void findPerimeter(Shape *option){
 // Public functions implementations.
 void runGeometryCalculator(void){
     Shape option;
-    GemoetryOption geometryOption;
+    GeometryOption geometryOption;
     int choice;
     while(1){
         displayGeometryMenu();
         readChoice(&choice);
-        geometryOption = (GemoetryOption)choice;
+        geometryOption = (GeometryOption)choice;
         switch(geometryOption){
             case GEOMETRY_AREA:
                 findArea(&option);
