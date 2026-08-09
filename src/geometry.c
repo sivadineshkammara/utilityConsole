@@ -37,13 +37,13 @@
 #include "geometry.h"
 #include "input.h"
 #include "types.h"
+#include "menu.h"
 
 static const float PI = 3.14f; 
 
 //function declarations for private helpers.
 static void findArea(Shape *option);
 static void findPerimeter(Shape *option);
-static void displayShapeMenu(void);
 
 static void areaOfSquare(void);
 static void areaOfRectangle(void); 
@@ -60,17 +60,6 @@ static float calculatePerimeter(char shape, float dimension1, float dimension2, 
 
 
 //function implementations for private helpers.
-static void displayShapeMenu(void){
-    printf(
-        "\n-----Choose your shape-----\n"
-        "1. Square\n"
-        "2. Rectangle\n"
-        "3. Triangle\n"
-        "4. Circle\n"
-        "5. Exit\n"
-    );
-}
-
 static float calculateArea(char shape, float dimension1, float dimension2){
     switch(shape){
         case 'S':
@@ -217,12 +206,7 @@ void runGeometryCalculator(void){
     GemoetryOption geometryOption;
     int choice;
     while(1){
-        printf(
-            "\n-----Choose the function-----\n"
-            "1. Find Area\n"
-            "2. Find Perimeter\n"
-            "3. Exit\n"
-        );
+        displayGeometryMenu();
         readChoice(&choice);
         geometryOption = (GemoetryOption)choice;
         switch(geometryOption){

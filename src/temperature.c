@@ -32,11 +32,10 @@
 #include "calculator.h"
 #include "temperature.h"
 #include "types.h"
+#include "menu.h"
 
 
 //Private function declarations.
-static void displayTemperatureMenu(void);
-
 static void celsiusToFahrenheit(void);
 static void celsiusToKelvin(void);
 
@@ -47,19 +46,6 @@ static void kelvinToCelsius(void);
 static void kelvinToFahrenheit(void);
 
 //Helper functions implementations.
-static void displayTemperatureMenu(void){
-    printf(
-        "\n*** Choose the temperature conversion ***\n"
-        "1.Celsius to Fahrenheit\n"
-        "2.Celsius to Kelvin\n"
-        "3.Fahrenheit to Celsius\n"
-        "4.Fahrenheit to Kelvin\n"
-        "5.Kelvin to Celsius\n"
-        "6.Kelvin to Fahrenheit\n"
-        "7.Return to Main menu\n"
-    );
-}
-
 static void celsiusToFahrenheit(void){
     float celsiusVal;
     readFloat("temperature in Celsius", &celsiusVal);

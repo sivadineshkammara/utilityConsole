@@ -25,6 +25,7 @@
 #include "calculator.h"
 #include "input.h"
 #include "types.h"
+#include "menu.h"
 
 //Private function declarations.
 static void addition(void);
@@ -134,16 +135,7 @@ void runCalculator(void){
     int choice;
 
     while(1){
-        printf(
-            "\n-----Select your operation-----\n"
-            "1. Addition of two numbers\n"
-            "2. Subtraction of two numbers\n"
-            "3. Multiplication of two numbers\n"
-            "4. Division of two numbers\n"
-            "5. Find the Remainder\n"
-            "6. Exit\n"
-        );
-
+        displayCalculatorMenu();
         readChoice(&choice);
         option = (Operation)choice;
         // printf("\n");
