@@ -82,7 +82,6 @@ static float calculatePerimeter(Shape shape, float dimension1, float dimension2,
         case SHAPE_RECTANGLE:
             return(2 * (dimension1 + dimension2));
         case SHAPE_TRIANGLE:
-            // Assuming dimension1, dimension2 are side1 and side2
             return(dimension1 + dimension2 + dimension3);
         case SHAPE_CIRCLE:
             return(2 * PI * dimension1);
