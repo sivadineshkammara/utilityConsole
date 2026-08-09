@@ -31,6 +31,7 @@
 #include "input.h"
 #include "calculator.h"
 #include "temperature.h"
+#include "types.h"
 
 
 //Private function declarations.
@@ -94,30 +95,32 @@ static void kelvinToFahrenheit(void){
 
 // Public functions implementations.
 void runTemperatureConverter(void){
+    TemperatureScale temperatureUnit;
     int option;
     while(1){
         displayTemperatureMenu();
         readChoice(&option);
-        switch(option){
-            case 1:
+        temperatureUnit = (TemperatureScale)option;
+        switch(temperatureUnit){
+            case CONVERT_CELSIUS_FAHRENHEIT:
                 celsiusToFahrenheit();
                 break;
-            case 2:
+            case CONVERT_CELSIUS_KELVIN:
                 celsiusToKelvin();
                 break;
-            case 3:
+            case CONVERT_FAHRENHEIT_CELSIUS:
                 fahrenheitToCelsius();
                 break;
-            case 4:
+            case CONVERT_FAHRENHEIT_KELVIN:
                 fahrenheitToKelvin();
                 break;
-            case 5:
+            case CONVERT_KELVIN_CELSIUS:
                 kelvinToCelsius();
                 break;
-            case 6:
+            case CONVERT_KELVIN_FAHRENHEIT:
                 kelvinToFahrenheit();
                 break;
-            case 7:
+            case CONVERT_EXIT:
                 return;
             default:
                 printf("***Please enter a valid option***\n\n");
